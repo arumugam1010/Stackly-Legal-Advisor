@@ -428,7 +428,7 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   background-color: var(--navy-dark);
-  background-image: url('assets/images/hero-bg.webp');
+  background-image: url('../assets/images/hero-bg.webp');
   background-size: cover;
   background-position: center right;
   color: #ffffff;
@@ -438,7 +438,7 @@ button, input, select, textarea {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(10, 18, 28, 0.92) 0%, rgba(15, 25, 38, 0.75) 50%, rgba(15, 25, 38, 0.4) 100%);
+  background: linear-gradient(90deg, rgba(10, 18, 28, 0.90) 0%, rgba(15, 25, 38, 0.70) 50%, rgba(15, 25, 38, 0.35) 100%);
   z-index: 1;
 }
 
@@ -1834,7 +1834,7 @@ button, input, select, textarea {
 .advice-cta-section {
   position: relative;
   background-color: var(--navy-dark);
-  background-image: url('assets/images/cta-bg.webp');
+  background-image: url('../assets/images/cta-bg.webp');
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -2652,11 +2652,21 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   background-color: var(--navy-dark);
-  background-image: url('assets/images/hero-bg.webp');
+  background-image: url('../assets/images/about-hero-bg.webp');
   background-size: cover;
   background-position: center right;
   color: #ffffff;
   overflow: hidden;
+}
+
+.services-hero-section {
+  background-image: url('../assets/images/hero-bg.webp') !important;
+  background-position: center right;
+}
+
+.team-hero-section {
+  background-image: url('../assets/images/hero-bg.webp') !important;
+  background-position: center right;
 }
 
 .about-hero-title {
@@ -3450,7 +3460,7 @@ button, input, select, textarea {
 }
 
 .blog-hero-section {
-  background-image: url('assets/images/blog-hero-bg.webp') !important;
+  background-image: url('../assets/images/blog-hero-bg.webp') !important;
   background-position: center center;
 }
 
@@ -3740,7 +3750,7 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   background-color: var(--navy-dark);
-  background-image: url('assets/images/contact-hero-bg.webp') !important;
+  background-image: url('../assets/images/contact-hero-bg.webp') !important;
   background-size: cover;
   background-position: center center;
   color: #ffffff;
@@ -3840,7 +3850,7 @@ button, input, select, textarea {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background-image: url('assets/images/about-statue.webp');
+  background-image: url('../assets/images/about-statue.webp');
   background-size: cover;
   background-position: center center;
   box-shadow: 0 10px 30px rgba(15, 25, 38, 0.08);
