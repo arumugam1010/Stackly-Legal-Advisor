@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opps! Page Not Found | Stackly Legal & Consulting</title>
+  <meta name="description"
+    content="The page you’re looking for doesn’t exist, has been moved, or the URL may be incorrect. Let’s get you back on track.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/webp" href="assets/images/logo-stackly-mint.webp">
+</head>
+
+<body class="error-page-body">
+
+  <!-- =========================================================================
+       Full-Screen 404 Error Canvas (Exact Match to Reference Design)
+       ========================================================================= -->
+  <main class="error-page-wrapper full-screen-404">
+    <div class="error-container-exact">
+
+      <!-- TOP STAGE: Judges + 404 Watermark + PAGE NOT FOUND -->
+      <div class="error-stage-exact">
+        <!-- Left 3D Judge Character -->
+        <div class="judge-figure judge-figure-left">
+          <img src="assets/images/judge-404.webp" alt="Judge with wooden gavel" width="512" height="512">
+        </div>
+
+        <!-- Center 404 Watermark with PAGE NOT FOUND across it -->
+        <div class="error-watermark-center">
+          <div class="error-watermark-num" aria-hidden="true">404</div>
+          <div class="error-watermark-label">PAGE NOT FOUND</div>
+        </div>
+
+        <!-- Right 3D Judge Character (Mirrored) -->
+        <div class="judge-figure judge-figure-right">
+          <img src="assets/images/judge-404.webp" alt="Judge with wooden gavel" width="512" height="512">
+        </div>
+      </div>
+
+      <!-- BOTTOM SECTION: Opps! Page Not Found + Description (athuku keela tha oops irukku) -->
+      <div class="error-bottom-content">
+        <h1 class="error-bottom-title">
+          Opps! Page<br>
+          Not Found
+        </h1>
+        <p class="error-bottom-desc">
+          The page you’re looking for doesn’t exist,<br>
+          has been moved, or the URL may be<br>
+          incorrect. Let’s get you back on track
+        </p>
+        <div class="error-actions-wrap" id="errorActionsWrap">
+          <a href="index.html" class="btn btn-outline-mint" id="btnReturnHome">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Return to Home</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Immediate Execution: Detect Login & Dashboard session to show Return to Dashboard -->
+  <script>
+    (function () {
+      function sync404ReturnDestination() {
+        var wrap = document.getElementById('errorActionsWrap');
+        if (!wrap) return;
+
+        var auth = null;
+        try {
+          auth = JSON.parse(localStorage.getItem('stackly_auth'));
+        } catch (e) {}
+
+        var isLoggedIn = !!(auth && auth.isLoggedIn && auth.userSignedIn);
+        var referrer = (document.referrer || '').toLowerCase();
+        var referrerIsDash = referrer.indexOf('dashboard') !== -1;
+        var sessionFromDash = sessionStorage.getItem('stackly_from_dashboard') === 'true';
+        var sessionLastUrl = sessionStorage.getItem('stackly_last_dash_url');
+        var sessionLastTab = sessionStorage.getItem('stackly_last_dash_tab');
+
+        // Check if user is logged in AND (came from dashboard OR has active dashboard session)
+        var shouldShowDashboard = isLoggedIn && (referrerIsDash || sessionFromDash || sessionStorage.getItem('stackly_from_dashboard') !== 'false');
+
+        if (shouldShowDashboard) {
+          var isAdvocate = (auth && auth.role === 'advocate') || referrer.indexOf('advocate') !== -1 || (sessionLastUrl && sessionLastUrl.indexOf('advocate') !== -1);
+          var dashUrl = sessionLastUrl || (isAdvocate ? 'dashboard-advocate.html' : 'dashboard-client.html');
+          if (sessionLastTab && dashUrl.indexOf('#') === -1) {
+            dashUrl += sessionLastTab;
+          }
+
+          wrap.innerHTML = '<a href="' + dashUrl + '" class="btn btn-outline-mint" id="btnReturnDashboard" title="Return to Dashboard">' +
+            '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<rect x="3" y="3" width="7" height="7"></rect>' +
+              '<rect x="14" y="3" width="7" height="7"></rect>' +
+              '<rect x="14" y="14" width="7" height="7"></rect>' +
+              '<rect x="3" y="14" width="7" height="7"></rect>' +
+            '</svg>' +
+            '<span>Return to Dashboard</span>' +
+          '</a>' +
+          '<a href="index.html" class="error-sublink-home" id="btnSublinkHome" title="Return to Main Website">' +
+            '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>' +
+              '<polyline points="9 22 9 12 15 12 15 22"></polyline>' +
+            '</svg>' +
+            '<span>or Return to Home</span>' +
+          '</a>';
+        } else {
+          wrap.innerHTML = '<a href="index.html" class="btn btn-outline-mint" id="btnReturnHome" title="Return to Home">' +
+            '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>' +
+              '<polyline points="9 22 9 12 15 12 15 22"></polyline>' +
+            '</svg>' +
+            '<span>Return to Home</span>' +
+          '</a>';
+        }
+      }
+
+      sync404ReturnDestination();
+      document.addEventListener('DOMContentLoaded', sync404ReturnDestination);
+    })();
+  </script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

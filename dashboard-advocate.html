@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advocate Practice Portal | Stackly Legal & Consulting</title>
+  <meta name="description" content="Senior Counsel & Legal Advocate Workspace for managing active caseloads, client matters, court filings, and practice analytics.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/webp" href="assets/images/logo-stackly-mint.webp">
+</head>
+<body class="dash-body">
+
+  <div class="dash-layout">
+    <!-- Backdrop Overlay for Mobile Drawer -->
+    <div class="dash-sidebar-overlay" id="dashSidebarOverlay"></div>
+
+    <!-- 10-Item Sidebar for Advocate -->
+    <aside class="dash-sidebar" id="dashSidebar">
+      <div class="dash-sidebar-header">
+        <div>
+          <a href="#tab-adv-overview" class="nav-brand dash-brand-logo-link" style="gap: 8px;" aria-label="Practice Overview" data-tab="tab-adv-overview">
+            <img src="assets/images/logo-stackly-mint.webp" alt="Stackly" class="dash-logo-img">
+          </a>
+          <div>
+            <span class="dash-role-badge advocate">Advocate Portal</span>
+          </div>
+        </div>
+        <button type="button" class="dash-sidebar-close" id="dashSidebarClose" aria-label="Close sidebar">✕</button>
+      </div>
+
+      <!-- 10 Navigation Items with data-tab switching -->
+      <div class="dash-menu-group">
+        <div class="dash-menu-label">Practitioner Menu</div>
+        <ul class="dash-nav-list">
+          <!-- 1. Practice Overview -->
+          <li>
+            <a href="#tab-adv-overview" class="dash-nav-link active" data-tab="tab-adv-overview">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Practice Overview</span>
+            </a>
+          </li>
+          <!-- 2. Active Case Files -->
+          <li>
+            <a href="#tab-adv-cases" class="dash-nav-link" data-tab="tab-adv-cases">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Active Case Files</span>
+              <span class="dash-badge-count">18</span>
+            </a>
+          </li>
+          <!-- 3. Client Roster -->
+          <li>
+            <a href="#tab-adv-roster" class="dash-nav-link" data-tab="tab-adv-roster">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>Client Roster</span>
+              <span class="dash-badge-count">42</span>
+            </a>
+          </li>
+          <!-- 4. Court Hearings & Calendar -->
+          <li>
+            <a href="#tab-adv-hearings" class="dash-nav-link" data-tab="tab-adv-hearings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Court Hearings</span>
+              <span class="dash-badge-count urgent">4</span>
+            </a>
+          </li>
+          <!-- 5. Pleadings & Briefs -->
+          <li>
+            <a href="#tab-adv-pleadings" class="dash-nav-link" data-tab="tab-adv-pleadings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>Pleadings &amp; Briefs</span>
+            </a>
+          </li>
+          <!-- 6. Client Communications -->
+          <li>
+            <a href="#tab-adv-messages" class="dash-nav-link" data-tab="tab-adv-messages">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Client Messages</span>
+              <span class="dash-badge-count">7</span>
+            </a>
+          </li>
+          <!-- 7. Billing & Retainers -->
+          <li>
+            <a href="#tab-adv-billing" class="dash-nav-link" data-tab="tab-adv-billing">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                <line x1="1" y1="10" x2="23" y2="10"></line>
+              </svg>
+              <span>Retainers &amp; Billing</span>
+            </a>
+          </li>
+          <!-- 8. Practice Analytics -->
+          <li>
+            <a href="#tab-adv-analytics" class="dash-nav-link" data-tab="tab-adv-analytics">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              <span>Practice Analytics</span>
+            </a>
+          </li>
+          <!-- 9. Legal Research & Precedents -->
+          <li>
+            <a href="#tab-adv-precedents" class="dash-nav-link" data-tab="tab-adv-precedents">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>Legal Precedents</span>
+            </a>
+          </li>
+          <!-- 10. Firm Settings -->
+          <li>
+            <a href="#tab-adv-settings" class="dash-nav-link" data-tab="tab-adv-settings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Firm Settings</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer User Profile -->
+      <div class="dash-sidebar-footer">
+        <div class="dash-user-info-flex">
+          <div class="dash-user-avatar" id="dashUserAvatar" style="background: #3b82f6; color: #ffffff;">A</div>
+          <div>
+            <div class="dash-user-name" id="dashUserName">Senior Advocate</div>
+            <div class="dash-user-role" id="dashUserEmail">advocate@stackly.com</div>
+          </div>
+        </div>
+        <button type="button" class="dash-logout-trigger" title="Log out">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard Area -->
+    <main class="dash-main">
+      <!-- Topbar Header -->
+      <header class="dash-topbar">
+        <div class="dash-topbar-left">
+          <button type="button" class="dash-mobile-toggle" id="dashMobileToggle" aria-label="Open sidebar menu">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="dash-page-title">
+            <h2 id="dashCurrentTitle">Advocate Practice Portal</h2>
+            <p id="dashCurrentSub">Court schedules, docket filings, and client litigation management</p>
+          </div>
+        </div>
+
+        <div class="dash-topbar-right">
+          <button type="button" class="btn btn-mint btn-sm trigger-draft-motion-modal" style="display: inline-flex; align-items: center; gap: 6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            File New Pleading
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Surface (10 Interactive Advocate Panes) -->
+      <div class="dash-content-area">
+
+        <!-- TAB 1: PRACTICE OVERVIEW -->
+        <section class="dash-tab-pane active" id="tab-adv-overview">
+          <!-- 4 Metric Cards -->
+          <div class="dash-stats-grid">
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">18</div>
+                <div class="dash-metric-title">Active Court Dockets</div>
+              </div>
+              <div class="dash-metric-icon-box">🏛️</div>
+            </div>
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">4</div>
+                <div class="dash-metric-title">Hearings This Week</div>
+              </div>
+              <div class="dash-metric-icon-box blue">📅</div>
+            </div>
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">89.4%</div>
+                <div class="dash-metric-title">Case Win / Settlement</div>
+              </div>
+              <div class="dash-metric-icon-box amber">🏆</div>
+            </div>
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">$412K</div>
+                <div class="dash-metric-title">Monthly Realized Billings</div>
+              </div>
+              <div class="dash-metric-icon-box purple">💼</div>
+            </div>
+          </div>
+
+          <!-- 2 Column Grid -->
+          <div class="dash-grid-2">
+            <!-- Priority Filings Panel -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <h3 class="dash-panel-title">Priority Trial Filings &amp; Court Dates</h3>
+                <button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-hearings" style="font-size: 0.75rem;">Full Docket &rarr;</button>
+              </div>
+              <div class="dash-table-wrap">
+                <table class="dash-table">
+                  <thead>
+                    <tr>
+                      <th>Docket ID</th>
+                      <th>Client Entity</th>
+                      <th>Jurisdiction</th>
+                      <th>Hearing Stage</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>#DKT-9921</strong><br><span style="font-size: 0.75rem; color: #64748b;">Apex Tech vs Global Fin</span></td>
+                      <td>Apex Global Corp</td>
+                      <td>US Federal District (SDNY)</td>
+                      <td><span class="dash-status-pill active">Summary Judg.</span></td>
+                      <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-cases" style="padding: 4px 8px; font-size: 0.72rem;">Manage &rarr;</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>#DKT-8419</strong><br><span style="font-size: 0.75rem; color: #64748b;">Merger Antitrust Review</span></td>
+                      <td>Vanguard Health Inc.</td>
+                      <td>Appellate Circuit (2nd)</td>
+                      <td><span class="dash-status-pill scheduled">Hearing 28 Sep</span></td>
+                      <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-hearings" style="padding: 4px 8px; font-size: 0.72rem;">Calendar &rarr;</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>#DKT-7201</strong><br><span style="font-size: 0.75rem; color: #64748b;">Cross-Border IP Injunction</span></td>
+                      <td>Kestrel Bio Sciences</td>
+                      <td>International Chamber (ICC)</td>
+                      <td><span class="dash-status-pill pending">Deposition</span></td>
+                      <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-pleadings" style="padding: 4px 8px; font-size: 0.72rem;">Briefs &rarr;</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Quick Practitioner Actions -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <h3 class="dash-panel-title">Practitioner Actions</h3>
+              </div>
+              <div class="dash-action-list">
+                <button type="button" class="dash-action-item trigger-draft-motion-modal" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon" style="background: #eff6ff; color: #2563eb;">⚖️</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">Draft Motion / Pleading</div>
+                    <div class="dash-action-sub">Pre-formatted jurisdiction templates</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+
+                <button type="button" class="dash-action-item switch-tab-trigger" data-target="tab-adv-roster" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon" style="background: #ecfdf5; color: #059669;">👥</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">Onboard Retainer Client</div>
+                    <div class="dash-action-sub">Conflict check &amp; retainer agreement</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+
+                <button type="button" class="dash-action-item switch-tab-trigger" data-target="tab-adv-hearings" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon" style="background: #fef3c7; color: #d97706;">📅</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">Sync Hearing Calendar</div>
+                    <div class="dash-action-sub">Integrate with Clerk docket system</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+
+                <button type="button" class="dash-action-item switch-tab-trigger" data-target="tab-adv-analytics" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon" style="background: #f5f3ff; color: #7c3aed;">📈</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">Practice Revenue Analytics</div>
+                    <div class="dash-action-sub">Client trust account auditing report</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: ACTIVE CASE FILES -->
+        <section class="dash-tab-pane" id="tab-adv-cases">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Active Litigation Files &amp; Trial Dockets</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Managing 18 active corporate matters across federal and international jurisdictions</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm trigger-draft-motion-modal">+ New Docket Entry</button>
+            </div>
+
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Docket Number</th>
+                    <th>Matter Title</th>
+                    <th>Client Entity</th>
+                    <th>Opposing Counsel</th>
+                    <th>Presiding Judge</th>
+                    <th>Stage</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#DKT-9921</strong></td>
+                    <td>Apex Commercial Breach of Contract</td>
+                    <td>Apex Global Corp</td>
+                    <td>Cravath &amp; Moore LLP</td>
+                    <td>Hon. Katherine B. Parker</td>
+                    <td><span class="dash-status-pill active">Summary Judgment</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Opening docket filing binder #DKT-9921...')">Binder</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#DKT-8419</strong></td>
+                    <td>Vanguard Healthcare Merger Defense</td>
+                    <td>Vanguard Health Inc.</td>
+                    <td>FTC Enforcement Div.</td>
+                    <td>Hon. Richard J. Sullivan</td>
+                    <td><span class="dash-status-pill scheduled">Hearing Set</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Opening docket filing binder #DKT-8419...')">Binder</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#DKT-7201</strong></td>
+                    <td>Kestrel Bio Sciences Patent Protection</td>
+                    <td>Kestrel Bio Sciences</td>
+                    <td>Latham &amp; Watkins</td>
+                    <td>Arbitrator Dr. H. Meyer</td>
+                    <td><span class="dash-status-pill pending">Discovery</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Opening docket filing binder #DKT-7201...')">Binder</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#DKT-6890</strong></td>
+                    <td>Starlight Securities Fraud Defense</td>
+                    <td>Starlight Capital Holdings</td>
+                    <td>SEC Enforcement Group</td>
+                    <td>Hon. Jed S. Rakoff</td>
+                    <td><span class="dash-status-pill active">Motion to Dismiss</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Opening docket filing binder #DKT-6890...')">Binder</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: CLIENT ROSTER -->
+        <section class="dash-tab-pane" id="tab-adv-roster">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Client Directory &amp; Representation Agreements</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">42 institutional and private equity clients currently under active retainer</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm" onclick="showToast('New client onboarding intake form generated.')">+ Add Retainer Client</button>
+            </div>
+
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Client Name</th>
+                    <th>Industry Sector</th>
+                    <th>Active Matters</th>
+                    <th>Retainer Balance</th>
+                    <th>Account Manager</th>
+                    <th>Direct Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>🏢 <strong>Apex Global Technologies Inc.</strong></td>
+                    <td>Enterprise Software</td>
+                    <td>3 Cases</td>
+                    <td><strong>$75,000.00</strong></td>
+                    <td>Arthur Sterling, JD</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-messages">Message</button></td>
+                  </tr>
+                  <tr>
+                    <td>🏥 <strong>Vanguard Healthcare Partners</strong></td>
+                    <td>Biotech &amp; Medical</td>
+                    <td>2 Cases</td>
+                    <td><strong>$50,000.00</strong></td>
+                    <td>Elena Vance</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-messages">Message</button></td>
+                  </tr>
+                  <tr>
+                    <td>🧬 <strong>Kestrel Bio Sciences Ltd.</strong></td>
+                    <td>Pharmaceutical IP</td>
+                    <td>1 Case</td>
+                    <td><strong>$35,000.00</strong></td>
+                    <td>Sarah J. Montgomery</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-messages">Message</button></td>
+                  </tr>
+                  <tr>
+                    <td>💼 <strong>Starlight Capital Holdings</strong></td>
+                    <td>Asset Management</td>
+                    <td>2 Cases</td>
+                    <td><strong>$90,000.00</strong></td>
+                    <td>Arthur Sterling, JD</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-adv-messages">Message</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: COURT HEARINGS & CALENDAR -->
+        <section class="dash-tab-pane" id="tab-adv-hearings">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Federal &amp; Appellate Hearing Calendar</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Synchronized trial appearance dates, oral arguments, and chambers conferences</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm" onclick="showToast('Hearing date added to court master calendar.')">+ Schedule Appearance</button>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                <div>
+                  <span class="dash-status-pill active">Trial Argument</span>
+                  <h4 style="margin: 6px 0 4px; font-size: 1.1rem; color: #0f1926;">Apex Tech vs Global Fin — Oral Argument on Summary Judgment</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: #64748b;">US Federal District Court (SDNY), 500 Pearl St, Courtroom 14C • Hon. Katherine B. Parker</p>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 1.15rem; font-weight: 800; color: #0f1926;">Thursday, 24 Sep 2026</div>
+                  <div style="font-size: 0.85rem; color: #0d9488; font-weight: 700;">10:00 AM EST (In-Person)</div>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                <div>
+                  <span class="dash-status-pill scheduled">Appellate Hearing</span>
+                  <h4 style="margin: 6px 0 4px; font-size: 1.1rem; color: #0f1926;">Vanguard Healthcare Antitrust Review — Panel Oral Argument</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: #64748b;">US Court of Appeals for the Second Circuit, Thurgood Marshall US Courthouse • Courtroom 1705</p>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 1.15rem; font-weight: 800; color: #0f1926;">Monday, 28 Sep 2026</div>
+                  <div style="font-size: 0.85rem; color: #2563eb; font-weight: 700;">02:30 PM EST (Panel Hearing)</div>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                <div>
+                  <span class="dash-status-pill pending">Arbitration Session</span>
+                  <h4 style="margin: 6px 0 4px; font-size: 1.1rem; color: #0f1926;">Kestrel Cross-Border IP Dispute — ICC Arbitral Tribunal</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: #64748b;">International Chamber of Commerce, Geneva Chamber / Hybrid Video Session</p>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 1.15rem; font-weight: 800; color: #0f1926;">Friday, 02 Oct 2026</div>
+                  <div style="font-size: 0.85rem; color: #d97706; font-weight: 700;">09:00 AM CET (Virtual Chambers)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: PLEADINGS & BRIEFS -->
+        <section class="dash-tab-pane" id="tab-adv-pleadings">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Pleadings, Motions &amp; Trial Brief Repository</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Prepared motions, affidavits, and appellate submissions</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm trigger-draft-motion-modal">+ Draft New Motion</button>
+            </div>
+
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Filing Title</th>
+                    <th>Matter Ref</th>
+                    <th>Type</th>
+                    <th>Filing Deadline</th>
+                    <th>Draft Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>📄 <strong>Motion_For_Summary_Judgment_Apex.docx</strong></td>
+                    <td>#DKT-9921</td>
+                    <td>FRCP Rule 56 Motion</td>
+                    <td>24 Sep 2026</td>
+                    <td><span class="dash-status-pill active">Finalized &amp; Filed</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Opening filing document viewer...')">View Brief</button></td>
+                  </tr>
+                  <tr>
+                    <td>📄 <strong>Emergency_Preliminary_Injunction_Brief.pdf</strong></td>
+                    <td>#DKT-7201</td>
+                    <td>Injunction Petition</td>
+                    <td>29 Sep 2026</td>
+                    <td><span class="dash-status-pill pending">Partner Review</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Opening drafting editor...')">Edit Draft</button></td>
+                  </tr>
+                  <tr>
+                    <td>📄 <strong>Appellate_Brief_Second_Circuit_Final.pdf</strong></td>
+                    <td>#DKT-8419</td>
+                    <td>Circuit Appeal Brief</td>
+                    <td>04 Oct 2026</td>
+                    <td><span class="dash-status-pill scheduled">Proofreading</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Opening filing document viewer...')">View Brief</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 6: CLIENT COMMUNICATIONS -->
+        <section class="dash-tab-pane" id="tab-adv-messages">
+          <div class="dash-panel-card" style="padding: 0; overflow: hidden;">
+            <div style="display: grid; grid-template-columns: 280px 1fr; min-height: 520px;">
+              <!-- Client Queue -->
+              <div style="background: #f8fafc; border-right: 1.5px solid var(--border-card); padding: 16px;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: #0f1926; margin-bottom: 12px;">Client Messages (7 Unread)</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <div style="background: #ffffff; border: 1.5px solid var(--primary-mint); border-radius: 8px; padding: 10px; cursor: pointer;">
+                    <div style="font-weight: 700; font-size: 0.85rem; color: #0f1926;">Apex Global Corp (CEO)</div>
+                    <div style="font-size: 0.75rem; color: #52cba5; font-weight: 600;">● Urgent inquiry regarding subpoena</div>
+                  </div>
+                  <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 8px; padding: 10px; cursor: pointer;">
+                    <div style="font-weight: 700; font-size: 0.85rem; color: #0f1926;">Vanguard Health Inc. (GC)</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Hearing brief review confirmation</div>
+                  </div>
+                  <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 8px; padding: 10px; cursor: pointer;">
+                    <div style="font-weight: 700; font-size: 0.85rem; color: #0f1926;">Saravanan (Private Client)</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Retainer invoice question</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Message Window -->
+              <div style="display: flex; flex-direction: column; height: 100%;">
+                <div style="padding: 14px 20px; border-bottom: 1.5px solid var(--border-card); display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <h4 style="margin: 0; font-size: 0.95rem; color: #0f1926;">Apex Global Corp — General Counsel</h4>
+                    <span style="font-size: 0.75rem; color: #64748b;">Matter: #DKT-9921 Commercial Contract</span>
+                  </div>
+                  <span style="font-size: 0.75rem; background: #e0e7ff; color: #3730a3; padding: 4px 10px; border-radius: 12px; font-weight: 700;">Priority Matter</span>
+                </div>
+
+                <div style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px;">
+                  <div style="align-self: flex-start; max-width: 75%; background: #f1f5f9; padding: 12px 16px; border-radius: 12px 12px 12px 2px; font-size: 0.85rem; color: #1e293b;">
+                    Counsel, we received a request for supplementary accounting ledgers from opposing counsel. Should we deliver the redacted or unredacted set?
+                    <span style="display: block; font-size: 0.7rem; color: #94a3b8; margin-top: 4px;">09:45 AM</span>
+                  </div>
+
+                  <div style="align-self: flex-end; max-width: 75%; background: #0f1926; color: #ffffff; font-weight: 500; padding: 12px 16px; border-radius: 12px 12px 2px 12px; font-size: 0.85rem;">
+                    Please deliver strictly the redacted set under Section 4 of our protective order. I have flagged this for Judge Parker's chambers.
+                    <span style="display: block; font-size: 0.7rem; color: #52cba5; margin-top: 4px;">09:52 AM</span>
+                  </div>
+                </div>
+
+                <form id="advChatForm" style="padding: 12px 16px; border-top: 1.5px solid var(--border-card); display: flex; gap: 10px; background: #ffffff;">
+                  <input type="text" id="advChatInput" placeholder="Reply to General Counsel..." style="flex: 1; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; font-size: 0.85rem;" required>
+                  <button type="submit" class="btn btn-mint btn-sm" style="padding: 8px 18px;">Send &rarr;</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 7: RETAINERS & BILLING -->
+        <section class="dash-tab-pane" id="tab-adv-billing">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Practice Trust Accounting &amp; Realized Billings</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Managing escrow retainers and verified partner hours</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm" onclick="showToast('Monthly billing summary generated.')">Generate Fee Statement</button>
+            </div>
+
+            <!-- Stats -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 16px;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Total Trust Account Escrow</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #0f1926; margin-top: 4px;">$250,000.00</div>
+                <div style="font-size: 0.72rem; color: #059669; font-weight: 700; margin-top: 2px;">● Fully Collateralized</div>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 16px;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Partner Hours (This Month)</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #2563eb; margin-top: 4px;">148.5 hrs</div>
+                <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Avg. Rate: $850/hr</div>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 16px;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Realized YTD Practice Fees</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #0f1926; margin-top: 4px;">$2,840,000</div>
+                <div style="font-size: 0.72rem; color: #059669; font-weight: 700; margin-top: 2px;">+18% YoY Growth</div>
+              </div>
+            </div>
+
+            <!-- Ledger Table -->
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Ledger Entry</th>
+                    <th>Client Entity</th>
+                    <th>Logged Hours</th>
+                    <th>Total Billed</th>
+                    <th>Escrow Draw</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#LED-2026-991</td>
+                    <td>Apex Global Technologies</td>
+                    <td>24.5 hrs</td>
+                    <td>$20,825.00</td>
+                    <td>Drawn from Trust</td>
+                    <td><span class="dash-status-pill active">Reconciled</span></td>
+                  </tr>
+                  <tr>
+                    <td>#LED-2026-990</td>
+                    <td>Vanguard Healthcare Partners</td>
+                    <td>31.0 hrs</td>
+                    <td>$26,350.00</td>
+                    <td>Drawn from Trust</td>
+                    <td><span class="dash-status-pill active">Reconciled</span></td>
+                  </tr>
+                  <tr>
+                    <td>#LED-2026-989</td>
+                    <td>Kestrel Bio Sciences Ltd.</td>
+                    <td>18.0 hrs</td>
+                    <td>$15,300.00</td>
+                    <td>Invoice Pending</td>
+                    <td><span class="dash-status-pill pending">Pending Client Approval</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 8: PRACTICE ANALYTICS -->
+        <section class="dash-tab-pane" id="tab-adv-analytics">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Litigation Performance &amp; Case Resolution Metrics</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Statistical review of trial success, arbitration results, and settlement efficiency</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px;">
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: #0f1926; margin-bottom: 12px;">Resolution Rate Breakdown</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #0d9488; font-family: 'Outfit', sans-serif;">89.4%</div>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 16px;">240+ High-Stakes Matters Won or Successfully Settled</p>
+                <div style="background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                  <div style="background: #52cba5; width: 89.4%; height: 100%;"></div>
+                </div>
+              </div>
+
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: #0f1926; margin-bottom: 12px;">Average Case Duration</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #2563eb; font-family: 'Outfit', sans-serif;">7.2 Mo</div>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 16px;">42% Faster than Federal Median Duration (12.4 Mo)</p>
+                <div style="background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                  <div style="background: #3b82f6; width: 65%; height: 100%;"></div>
+                </div>
+              </div>
+
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: #0f1926; margin-bottom: 12px;">Jurisdictional Reach</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #7c3aed; font-family: 'Outfit', sans-serif;">40+</div>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 16px;">Global Jurisdictions &amp; Federal District Bars</p>
+                <div style="background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden;">
+                  <div style="background: #8b5cf6; width: 85%; height: 100%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 9: LEGAL PRECEDENTS & RESEARCH -->
+        <section class="dash-tab-pane" id="tab-adv-precedents">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Federal Precedent &amp; Case Law Citation Manager</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Curated landmark authorities for commercial dispute defense</p>
+              </div>
+              <input type="text" placeholder="Search precedents by citation or keyword..." style="padding: 6px 12px; border: 1.5px solid var(--border-card); border-radius: 8px; font-size: 0.85rem; width: 280px;">
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 18px;">
+                <span style="font-size: 0.75rem; background: #e8fbf4; color: #0d9488; font-weight: 700; padding: 3px 8px; border-radius: 4px;">Commercial Breach</span>
+                <h4 style="margin: 6px 0 4px; font-size: 1.05rem; color: #0f1926;">Hadley v. Baxendale, 9 Exch. 341 (1854)</h4>
+                <p style="margin: 0; font-size: 0.85rem; color: #475569;">Core standard regarding foreseeability of consequential damages in complex supply agreements.</p>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 18px;">
+                <span style="font-size: 0.75rem; background: #eff6ff; color: #2563eb; font-weight: 700; padding: 3px 8px; border-radius: 4px;">Summary Judgment Rule 56</span>
+                <h4 style="margin: 6px 0 4px; font-size: 1.05rem; color: #0f1926;">Celotex Corp. v. Catrett, 477 U.S. 317 (1986)</h4>
+                <p style="margin: 0; font-size: 0.85rem; color: #475569;">Trilogy precedent defining moving party's burden where opposing party fails to establish essential element.</p>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 18px;">
+                <span style="font-size: 0.75rem; background: #fef3c7; color: #d97706; font-weight: 700; padding: 3px 8px; border-radius: 4px;">Pleading Standard</span>
+                <h4 style="margin: 6px 0 4px; font-size: 1.05rem; color: #0f1926;">Ashcroft v. Iqbal, 556 U.S. 662 (2009)</h4>
+                <p style="margin: 0; font-size: 0.85rem; color: #475569;">Governing plausibility threshold required under Rule 8(a)(2) on motions to dismiss commercial complaints.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 10: FIRM SETTINGS -->
+        <section class="dash-tab-pane" id="tab-adv-settings">
+          <div class="dash-panel-card" style="max-width: 800px;">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Advocate Credentials &amp; Practice Preferences</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Bar admissions, clerk integration, and firm security controls</p>
+              </div>
+            </div>
+
+            <form id="advSettingsForm">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div class="form-group">
+                  <label class="auth-field-label">Senior Advocate Name</label>
+                  <input type="text" value="Arthur Sterling, JD" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+                </div>
+                <div class="form-group">
+                  <label class="auth-field-label">Bar Admission Number</label>
+                  <input type="text" value="NY-BAR-492019" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div class="form-group">
+                  <label class="auth-field-label">Practice Email</label>
+                  <input type="email" value="advocate@stackly.com" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+                </div>
+                <div class="form-group">
+                  <label class="auth-field-label">Default Court Jurisdiction</label>
+                  <select style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; background: #ffffff;">
+                    <option selected>US District Court (Southern District of NY)</option>
+                    <option>US Court of Appeals (Second Circuit)</option>
+                    <option>Delaware Court of Chancery</option>
+                    <option>International Chamber of Commerce (ICC)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px;">
+                <button type="submit" class="btn btn-mint">Save Practice Settings</button>
+                <button type="button" class="btn btn-outline-mint dash-logout-trigger">Sign Out</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- INTERACTIVE MODAL: DRAFT MOTION / PLEADING -->
+  <div class="modal-overlay" id="draftMotionModal">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="closeMotionModalBtn">&times;</button>
+      <div style="margin-bottom: 20px;">
+        <span class="dash-role-badge advocate">Docket Filing</span>
+        <h3 style="margin: 8px 0 4px; font-size: 1.35rem; color: #0f1926;">Draft New Pleading / Motion</h3>
+        <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Prepare formal petition for docket filing</p>
+      </div>
+
+      <form id="motionDraftForm">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="auth-field-label">Select Active Docket</label>
+          <select style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; background: #ffffff;">
+            <option>#DKT-9921 — Apex Commercial Breach of Contract</option>
+            <option>#DKT-8419 — Vanguard Healthcare Merger Defense</option>
+            <option>#DKT-7201 — Kestrel Bio Sciences Patent Protection</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="auth-field-label">Pleading Type</label>
+          <select style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; background: #ffffff;">
+            <option>FRCP Rule 56 Motion for Summary Judgment</option>
+            <option>FRCP Rule 12(b)(6) Motion to Dismiss</option>
+            <option>Emergency Preliminary Injunction Petition</option>
+            <option>Notice of Settlement &amp; Discontinuance</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 18px;">
+          <label class="auth-field-label">Filing Memorandum Synopsis</label>
+          <textarea rows="3" placeholder="Enter key legal bases, statutes, and citations..." style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; resize: vertical; font-family: inherit; font-size: 0.85rem;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn btn-outline-mint" id="cancelMotionModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-mint">Generate Pleading &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

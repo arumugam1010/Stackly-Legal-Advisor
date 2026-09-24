@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Legal Portal | Stackly Legal & Consulting</title>
+  <meta name="description" content="Secure Client Legal Workspace for tracking cases, consultations, legal documents, attorney chat, and billing.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/webp" href="assets/images/logo-stackly-mint.webp">
+</head>
+<body class="dash-body">
+
+  <div class="dash-layout">
+    <!-- Backdrop Overlay for Mobile Drawer -->
+    <div class="dash-sidebar-overlay" id="dashSidebarOverlay"></div>
+
+    <!-- 10-Item Sidebar -->
+    <aside class="dash-sidebar" id="dashSidebar">
+      <div class="dash-sidebar-header">
+        <div>
+          <a href="#tab-overview" class="nav-brand dash-brand-logo-link" style="gap: 8px;" aria-label="Client Overview" data-tab="tab-overview">
+            <img src="assets/images/logo-stackly-mint.webp" alt="Stackly" class="dash-logo-img">
+          </a>
+          <div>
+            <span class="dash-role-badge client">Client Portal</span>
+          </div>
+        </div>
+        <button type="button" class="dash-sidebar-close" id="dashSidebarClose" aria-label="Close sidebar">✕</button>
+      </div>
+
+      <!-- 10 Navigation Items with data-tab switching -->
+      <div class="dash-menu-group">
+        <div class="dash-menu-label">Client Workspace</div>
+        <ul class="dash-nav-list">
+          <!-- 1. Overview -->
+          <li>
+            <a href="#tab-overview" class="dash-nav-link active" data-tab="tab-overview">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Overview</span>
+            </a>
+          </li>
+          <!-- 2. Active Cases -->
+          <li>
+            <a href="#tab-cases" class="dash-nav-link" data-tab="tab-cases">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>My Active Cases</span>
+              <span class="dash-badge-count">3</span>
+            </a>
+          </li>
+          <!-- 3. Consultations -->
+          <li>
+            <a href="#tab-consultations" class="dash-nav-link" data-tab="tab-consultations">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Consultations</span>
+              <span class="dash-badge-count urgent">1</span>
+            </a>
+          </li>
+          <!-- 4. Legal Documents -->
+          <li>
+            <a href="#tab-documents" class="dash-nav-link" data-tab="tab-documents">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>Legal Documents</span>
+            </a>
+          </li>
+          <!-- 5. Messages -->
+          <li>
+            <a href="#tab-messages" class="dash-nav-link" data-tab="tab-messages">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Attorney Messages</span>
+              <span class="dash-badge-count">2</span>
+            </a>
+          </li>
+          <!-- 6. Billing & Invoices -->
+          <li>
+            <a href="#tab-billing" class="dash-nav-link" data-tab="tab-billing">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                <line x1="1" y1="10" x2="23" y2="10"></line>
+              </svg>
+              <span>Invoices &amp; Billing</span>
+            </a>
+          </li>
+          <!-- 7. Legal Team -->
+          <li>
+            <a href="#tab-team" class="dash-nav-link" data-tab="tab-team">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>My Legal Team</span>
+            </a>
+          </li>
+          <!-- 8. Case Milestones -->
+          <li>
+            <a href="#tab-milestones" class="dash-nav-link" data-tab="tab-milestones">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Case Milestones</span>
+            </a>
+          </li>
+          <!-- 9. Evidence Vault -->
+          <li>
+            <a href="#tab-vault" class="dash-nav-link" data-tab="tab-vault">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Evidence Vault</span>
+            </a>
+          </li>
+          <!-- 10. Account Settings -->
+          <li>
+            <a href="#tab-settings" class="dash-nav-link" data-tab="tab-settings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Account Settings</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer User Profile -->
+      <div class="dash-sidebar-footer">
+        <div class="dash-user-info-flex">
+          <div class="dash-user-avatar" id="dashUserAvatar">S</div>
+          <div>
+            <div class="dash-user-name" id="dashUserName">Saravanan</div>
+            <div class="dash-user-role" id="dashUserEmail">client@stackly.com</div>
+          </div>
+        </div>
+        <button type="button" class="dash-logout-trigger" title="Log out">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard Area -->
+    <main class="dash-main">
+      <!-- Topbar Header -->
+      <header class="dash-topbar">
+        <div class="dash-topbar-left">
+          <button type="button" class="dash-mobile-toggle" id="dashMobileToggle" aria-label="Open sidebar menu">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="dash-page-title">
+            <h2 id="dashCurrentTitle">Client Overview</h2>
+            <p id="dashCurrentSub">Welcome to your personal legal matter workspace</p>
+          </div>
+        </div>
+
+        <div class="dash-topbar-right"></div>
+      </header>
+
+      <!-- Content Surface (10 Interactive Panes) -->
+      <div class="dash-content-area">
+
+        <!-- TAB 1: OVERVIEW -->
+        <section class="dash-tab-pane active" id="tab-overview">
+          <!-- 4 Metric Cards -->
+          <div class="dash-stats-grid">
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">3</div>
+                <div class="dash-metric-title">Active Matters</div>
+              </div>
+              <div class="dash-metric-icon-box">⚖️</div>
+            </div>
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">1</div>
+                <div class="dash-metric-title">Upcoming Hearing</div>
+              </div>
+              <div class="dash-metric-icon-box blue">📅</div>
+            </div>
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">14</div>
+                <div class="dash-metric-title">Secured Documents</div>
+              </div>
+              <div class="dash-metric-icon-box amber">📑</div>
+            </div>
+            <div class="dash-metric-card">
+              <div>
+                <div class="dash-metric-number">100%</div>
+                <div class="dash-metric-title">Retainer Verified</div>
+              </div>
+              <div class="dash-metric-icon-box purple">💳</div>
+            </div>
+          </div>
+
+          <!-- 2 Column Layout: Cases Table + Quick Actions -->
+          <div class="dash-grid-2">
+            <!-- Active Cases Panel -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <h3 class="dash-panel-title">Active Matters &amp; Case Filings</h3>
+                <button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-cases" style="font-size: 0.75rem;">View All Cases &rarr;</button>
+              </div>
+              <div class="dash-table-wrap">
+                <table class="dash-table">
+                  <thead>
+                    <tr>
+                      <th>Case Reference</th>
+                      <th>Lead Counsel</th>
+                      <th>Practice Area</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>#STK-2026-881</strong><br><span style="font-size: 0.75rem; color: #64748b;">Sterling Commercial Dis.</span></td>
+                      <td>Arthur Sterling, JD</td>
+                      <td>Commercial Litigation</td>
+                      <td><span class="dash-status-pill active">In Discovery</span></td>
+                      <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-milestones" style="padding: 4px 8px; font-size: 0.72rem;">Timeline &rarr;</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>#STK-2026-904</strong><br><span style="font-size: 0.75rem; color: #64748b;">Vance Regulatory Audit</span></td>
+                      <td>Elena Vance</td>
+                      <td>Private Equity &amp; Audit</td>
+                      <td><span class="dash-status-pill scheduled">Hearing Set</span></td>
+                      <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-documents" style="padding: 4px 8px; font-size: 0.72rem;">Briefs &rarr;</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>#STK-2026-742</strong><br><span style="font-size: 0.75rem; color: #64748b;">Montgomery Appellate Filing</span></td>
+                      <td>Sarah J. Montgomery</td>
+                      <td>Federal Appeals</td>
+                      <td><span class="dash-status-pill pending">Drafting Brief</span></td>
+                      <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-messages" style="padding: 4px 8px; font-size: 0.72rem;">Chat &rarr;</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Quick Action Hub -->
+            <div class="dash-panel-card">
+              <div class="dash-panel-header">
+                <h3 class="dash-panel-title">Matter Quick Actions</h3>
+              </div>
+              <div class="dash-action-list">
+                <button type="button" class="dash-action-item switch-tab-trigger" data-target="tab-vault" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon">📤</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">Upload Evidence File</div>
+                    <div class="dash-action-sub">Secure 256-bit encrypted transfer</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+
+                <button type="button" class="dash-action-item switch-tab-trigger" data-target="tab-messages" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon">💬</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">Direct Attorney Chat</div>
+                    <div class="dash-action-sub">2 unread replies from Arthur Sterling</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+
+                <button type="button" class="dash-action-item switch-tab-trigger" data-target="tab-billing" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon">💳</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">Pay Retainer Invoice</div>
+                    <div class="dash-action-sub">Invoice #INV-492 ready for review</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+
+                <button type="button" class="dash-action-item switch-tab-trigger" data-target="tab-milestones" style="width:100%; border:1.5px solid var(--border-card); text-align:left; cursor:pointer;">
+                  <div class="dash-action-icon">📊</div>
+                  <div class="dash-action-info">
+                    <div class="dash-action-title">View Matter Timeline</div>
+                    <div class="dash-action-sub">Track active litigation milestones</div>
+                  </div>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: MY ACTIVE CASES -->
+        <section class="dash-tab-pane" id="tab-cases">
+          <div class="dash-panel-card" style="margin-bottom: 24px;">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">All Active Client Matters</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Comprehensive record of legal files under active representation</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <input type="text" id="caseSearchInput" placeholder="Filter by case reference or lawyer..." style="padding: 6px 12px; border: 1.5px solid var(--border-card); border-radius: 8px; font-size: 0.85rem; width: 260px;">
+              </div>
+            </div>
+
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Docket ID</th>
+                    <th>Matter Description</th>
+                    <th>Lead Counsel</th>
+                    <th>Jurisdiction</th>
+                    <th>Filed Date</th>
+                    <th>Status</th>
+                    <th>Quick Contact</th>
+                  </tr>
+                </thead>
+                <tbody id="caseTableBody">
+                  <tr>
+                    <td><strong>#STK-2026-881</strong></td>
+                    <td>Sterling Cross-Border Commercial Litigation</td>
+                    <td>Arthur Sterling, JD</td>
+                    <td>US Federal District (SDNY)</td>
+                    <td>14 Jan 2026</td>
+                    <td><span class="dash-status-pill active">In Discovery</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-messages">Message Counsel</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#STK-2026-904</strong></td>
+                    <td>Vance Strategic Private Equity Audit</td>
+                    <td>Elena Vance</td>
+                    <td>Delaware Chancery Court</td>
+                    <td>03 Feb 2026</td>
+                    <td><span class="dash-status-pill scheduled">Hearing 28 Sep</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-consultations">View Schedule</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#STK-2026-742</strong></td>
+                    <td>Montgomery Appellate Defense Pleading</td>
+                    <td>Sarah J. Montgomery</td>
+                    <td>US Circuit Court (2nd Cir)</td>
+                    <td>19 Feb 2026</td>
+                    <td><span class="dash-status-pill pending">Brief Preparation</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-documents">View Drafts</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#STK-2026-611</strong></td>
+                    <td>Intellectual Property Trademark Petition</td>
+                    <td>Arthur Sterling, JD</td>
+                    <td>USPTO Appeal Board</td>
+                    <td>08 Mar 2026</td>
+                    <td><span class="dash-status-pill active">Registered</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-vault">View Vault</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: CONSULTATIONS -->
+        <section class="dash-tab-pane" id="tab-consultations">
+          <div class="dash-panel-card" style="margin-bottom: 24px;">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Scheduled Consultations &amp; Legal Strategy Sessions</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Virtual and in-person legal advisory meetings</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm trigger-book-consult-modal">+ Book New Session</button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+              <!-- Consultation Card 1 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                  <span class="dash-status-pill active">Confirmed Upcoming</span>
+                  <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Zoom Video Call</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #0f1926;">Commercial Deposition Review</h4>
+                <p style="margin: 0 0 12px; font-size: 0.85rem; color: #64748b;">With Lead Partner <strong>Arthur Sterling, JD</strong></p>
+                <div style="background: #f8fafc; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #334155; margin-bottom: 16px;">
+                  <div>📅 <strong>Tomorrow, 10:30 AM – 11:30 AM EST</strong></div>
+                  <div style="margin-top: 4px;">🔗 Link: <code>https://meet.stackly.com/attorney-sterling</code></div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" class="btn btn-mint btn-sm" onclick="showToast('Connecting to secure video conference room...')">Join Meeting</button>
+                  <button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-messages">Chat Before</button>
+                </div>
+              </div>
+
+              <!-- Consultation Card 2 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                  <span class="dash-status-pill scheduled">Scheduled Next Week</span>
+                  <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Office Advisory</span>
+                </div>
+                <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #0f1926;">Regulatory Compliance Assessment</h4>
+                <p style="margin: 0 0 12px; font-size: 0.85rem; color: #64748b;">With Senior Counsel <strong>Elena Vance</strong></p>
+                <div style="background: #f8fafc; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #334155; margin-bottom: 16px;">
+                  <div>📅 <strong>Tuesday, 29 Sep 2026, 02:00 PM EST</strong></div>
+                  <div style="margin-top: 4px;">📍 Manhattan Executive Office, Suite 400</div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Calendar invite sent to your registered email.')">Add to Calendar</button>
+                  <button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Reschedule request submitted to practice coordinator.')">Reschedule</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: LEGAL DOCUMENTS -->
+        <section class="dash-tab-pane" id="tab-documents">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Legal Briefs, Pleadings &amp; Agreements</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Official court-stamped documents and retainer agreements</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm switch-tab-trigger" data-target="tab-vault">+ Upload Document</button>
+            </div>
+
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Document Name</th>
+                    <th>Category</th>
+                    <th>Case Ref</th>
+                    <th>File Size</th>
+                    <th>Date Uploaded</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>📄 <strong>Sterling_Commercial_Complaint_Stamped.pdf</strong></td>
+                    <td>Court Pleading</td>
+                    <td>#STK-2026-881</td>
+                    <td>4.2 MB</td>
+                    <td>14 Jan 2026</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Downloading stamped complaint PDF...')">Download ↓</button></td>
+                  </tr>
+                  <tr>
+                    <td>📑 <strong>Engagement_Retainer_Agreement_Signed.pdf</strong></td>
+                    <td>Legal Retainer</td>
+                    <td>#STK-All</td>
+                    <td>1.8 MB</td>
+                    <td>02 Jan 2026</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Downloading signed retainer agreement...')">Download ↓</button></td>
+                  </tr>
+                  <tr>
+                    <td>⚖️ <strong>Elena_Vance_Regulatory_Audit_Brief.pdf</strong></td>
+                    <td>Audit Filing</td>
+                    <td>#STK-2026-904</td>
+                    <td>6.7 MB</td>
+                    <td>03 Feb 2026</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Downloading audit brief...')">Download ↓</button></td>
+                  </tr>
+                  <tr>
+                    <td>📋 <strong>Court_Notice_Hearing_Schedule_Sep.pdf</strong></td>
+                    <td>Hearing Notice</td>
+                    <td>#STK-2026-742</td>
+                    <td>890 KB</td>
+                    <td>19 Feb 2026</td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Downloading court hearing notice...')">Download ↓</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: MESSAGES & CHAT -->
+        <section class="dash-tab-pane" id="tab-messages">
+          <div class="dash-panel-card" style="padding: 0; overflow: hidden;">
+            <div style="display: grid; grid-template-columns: 280px 1fr; min-height: 520px;">
+              <!-- Counsel Selector Column -->
+              <div style="background: #f8fafc; border-right: 1.5px solid var(--border-card); padding: 16px;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: #0f1926; margin-bottom: 12px;">Active Attorney Channels</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <div style="background: #ffffff; border: 1.5px solid var(--primary-mint); border-radius: 8px; padding: 10px; cursor: pointer;">
+                    <div style="font-weight: 700; font-size: 0.85rem; color: #0f1926;">Arthur Sterling, JD</div>
+                    <div style="font-size: 0.75rem; color: #52cba5; font-weight: 600;">● Online • Lead Partner</div>
+                    <div style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">"Draft brief is uploaded to vault..."</div>
+                  </div>
+                  <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 8px; padding: 10px; cursor: pointer;">
+                    <div style="font-weight: 700; font-size: 0.85rem; color: #0f1926;">Elena Vance</div>
+                    <div style="font-size: 0.75rem; color: #94a3b8;">Offline • Senior Counsel</div>
+                    <div style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">"Hearing scheduled for 28 Sep..."</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Area Column -->
+              <div style="display: flex; flex-direction: column; height: 100%;">
+                <!-- Chat Header -->
+                <div style="padding: 14px 20px; border-bottom: 1.5px solid var(--border-card); display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <h4 style="margin: 0; font-size: 0.95rem; color: #0f1926;">Arthur Sterling, JD</h4>
+                    <span style="font-size: 0.75rem; color: #52cba5;">Senior Partner • Commercial Litigation Group</span>
+                  </div>
+                  <span style="font-size: 0.75rem; background: #e8fbf4; color: #0d9488; padding: 4px 10px; border-radius: 12px; font-weight: 700;">Attorney-Client Privileged</span>
+                </div>
+
+                <!-- Chat Messages Feed -->
+                <div id="chatMessagesFeed" style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; max-height: 380px;">
+                  <div style="align-self: flex-start; max-width: 75%; background: #f1f5f9; padding: 12px 16px; border-radius: 12px 12px 12px 2px; font-size: 0.85rem; color: #1e293b;">
+                    Good day! We have finalized the discovery requests for the Sterling commercial dispute (#STK-2026-881).
+                    <span style="display: block; font-size: 0.7rem; color: #94a3b8; margin-top: 4px;">10:14 AM</span>
+                  </div>
+
+                  <div style="align-self: flex-end; max-width: 75%; background: #52cba5; color: #0f1926; font-weight: 500; padding: 12px 16px; border-radius: 12px 12px 2px 12px; font-size: 0.85rem;">
+                    Thank you Arthur. Have the opposing counsel responded to our preliminary settlement terms?
+                    <span style="display: block; font-size: 0.7rem; color: rgba(15, 25, 38, 0.7); margin-top: 4px;">10:18 AM</span>
+                  </div>
+
+                  <div style="align-self: flex-start; max-width: 75%; background: #f1f5f9; padding: 12px 16px; border-radius: 12px 12px 12px 2px; font-size: 0.85rem; color: #1e293b;">
+                    They requested a 5-day extension which we granted with conditions. I have added the updated stipulation to your Legal Documents vault.
+                    <span style="display: block; font-size: 0.7rem; color: #94a3b8; margin-top: 4px;">10:22 AM</span>
+                  </div>
+                </div>
+
+                <!-- Chat Input Row -->
+                <form id="chatComposeForm" style="padding: 12px 16px; border-top: 1.5px solid var(--border-card); display: flex; gap: 10px; background: #ffffff;">
+                  <input type="text" id="chatInputText" placeholder="Type an encrypted message to Arthur Sterling..." style="flex: 1; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; font-size: 0.85rem;" required>
+                  <button type="submit" class="btn btn-mint btn-sm" style="padding: 8px 18px;">Send &rarr;</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 6: INVOICES & BILLING -->
+        <section class="dash-tab-pane" id="tab-billing">
+          <div class="dash-panel-card" style="margin-bottom: 24px;">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Invoices, Billing Ledgers &amp; Retainer Balances</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Transparent accounting and verified matter charges</p>
+              </div>
+              <button type="button" class="btn btn-mint btn-sm trigger-pay-modal">Make Retainer Payment</button>
+            </div>
+
+            <!-- Billing Summary -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 16px;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Active Retainer Trust Balance</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #0f1926; margin-top: 4px;">$25,000.00</div>
+                <div style="font-size: 0.72rem; color: #059669; font-weight: 700; margin-top: 2px;">● Sufficient Funds</div>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 16px;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Pending Invoices (This Cycle)</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #d97706; margin-top: 4px;">$3,450.00</div>
+                <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Due: 15 Oct 2026</div>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid var(--border-card); border-radius: 10px; padding: 16px;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Total Settled Fees (YTD)</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #0f1926; margin-top: 4px;">$48,920.00</div>
+                <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">All Receipts Verified</div>
+              </div>
+            </div>
+
+            <!-- Invoices Table -->
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Invoice #</th>
+                    <th>Billing Description</th>
+                    <th>Hours Logged</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#INV-2026-492</strong></td>
+                    <td>Commercial Litigation Discovery Deposition Hours</td>
+                    <td>8.5 hrs</td>
+                    <td><strong>$3,450.00</strong></td>
+                    <td>15 Oct 2026</td>
+                    <td><span class="dash-status-pill pending">Pending Review</span></td>
+                    <td><button type="button" class="btn btn-mint btn-sm trigger-pay-modal" style="padding: 4px 10px; font-size: 0.75rem;">Pay Now</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#INV-2026-381</strong></td>
+                    <td>Regulatory Compliance Audit Preparation</td>
+                    <td>12.0 hrs</td>
+                    <td>$4,800.00</td>
+                    <td>15 Aug 2026</td>
+                    <td><span class="dash-status-pill active">Paid in Full</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Downloading receipt #INV-2026-381 PDF...')" style="padding: 4px 10px; font-size: 0.75rem;">Receipt</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#INV-2026-210</strong></td>
+                    <td>Initial Case Evaluation &amp; Retainer Deposit</td>
+                    <td>Flat Retainer</td>
+                    <td>$20,000.00</td>
+                    <td>10 Jan 2026</td>
+                    <td><span class="dash-status-pill active">Paid in Full</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Downloading receipt #INV-2026-210 PDF...')" style="padding: 4px 10px; font-size: 0.75rem;">Receipt</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 7: MY LEGAL TEAM -->
+        <section class="dash-tab-pane" id="tab-team">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Assigned Senior Counsel &amp; Legal Specialists</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Dedicated attorneys managing your portfolio matters</p>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+              <!-- Attorney 1 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
+                <div style="height: 180px; background: #f1f5f9; overflow: hidden; border-bottom: 1.5px solid var(--border-card);">
+                  <img src="assets/images/team-large-arthur.webp" alt="Arthur Sterling, JD" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div style="padding: 20px;">
+                  <span style="font-size: 0.75rem; color: #52cba5; font-weight: 700;">Lead Partner</span>
+                  <h4 style="margin: 4px 0 6px; font-size: 1.15rem; color: #0f1926;">Arthur Sterling, JD</h4>
+                  <p style="font-size: 0.8rem; color: #64748b; margin: 0 0 12px;">Corporate Litigation &amp; International Arbitration • 30+ Years</p>
+                  <div style="font-size: 0.8rem; color: #334155; margin-bottom: 14px;">
+                    <div>✉️ a.sterling@stackly.com</div>
+                    <div style="margin-top: 3px;">📞 +1 (212) 555-0192</div>
+                  </div>
+                  <button type="button" class="btn btn-mint btn-sm switch-tab-trigger" data-target="tab-messages" style="width: 100%;">Direct Chat &rarr;</button>
+                </div>
+              </div>
+
+              <!-- Attorney 2 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
+                <div style="height: 180px; background: #f1f5f9; overflow: hidden; border-bottom: 1.5px solid var(--border-card);">
+                  <img src="assets/images/team-large-elena.webp" alt="Elena Vance" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div style="padding: 20px;">
+                  <span style="font-size: 0.75rem; color: #52cba5; font-weight: 700;">Senior Counsel</span>
+                  <h4 style="margin: 4px 0 6px; font-size: 1.15rem; color: #0f1926;">Elena Vance</h4>
+                  <p style="font-size: 0.8rem; color: #64748b; margin: 0 0 12px;">Private Equity &amp; Regulatory Compliance • 15+ Years</p>
+                  <div style="font-size: 0.8rem; color: #334155; margin-bottom: 14px;">
+                    <div>✉️ e.vance@stackly.com</div>
+                    <div style="margin-top: 3px;">📞 +1 (212) 555-0184</div>
+                  </div>
+                  <button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-consultations" style="width: 100%;">Book Session &rarr;</button>
+                </div>
+              </div>
+
+              <!-- Attorney 3 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--border-card); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
+                <div style="height: 180px; background: #f1f5f9; overflow: hidden; border-bottom: 1.5px solid var(--border-card);">
+                  <img src="assets/images/team-large-sarah.webp" alt="Sarah J. Montgomery" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                </div>
+                <div style="padding: 20px;">
+                  <span style="font-size: 0.75rem; color: #52cba5; font-weight: 700;">Appellate Specialist</span>
+                  <h4 style="margin: 4px 0 6px; font-size: 1.15rem; color: #0f1926;">Sarah J. Montgomery</h4>
+                  <p style="font-size: 0.8rem; color: #64748b; margin: 0 0 12px;">White-Collar Defense &amp; Federal Appeals • 18+ Years</p>
+                  <div style="font-size: 0.8rem; color: #334155; margin-bottom: 14px;">
+                    <div>✉️ s.montgomery@stackly.com</div>
+                    <div style="margin-top: 3px;">📞 +1 (212) 555-0177</div>
+                  </div>
+                  <button type="button" class="btn btn-outline-mint btn-sm switch-tab-trigger" data-target="tab-documents" style="width: 100%;">View Briefs &rarr;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 8: CASE MILESTONES -->
+        <section class="dash-tab-pane" id="tab-milestones">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Case Progression Stepper (#STK-2026-881)</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Real-time legal proceeding stages and completed requirements</p>
+              </div>
+              <span class="dash-status-pill active">Phase 3 Active</span>
+            </div>
+
+            <!-- Vertical Timeline Stepper -->
+            <div style="padding: 10px 20px; display: flex; flex-direction: column; gap: 24px; position: relative;">
+              <!-- Step 1 (Completed) -->
+              <div style="display: flex; gap: 18px;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="width: 32px; height: 32px; border-radius: 50%; background: #52cba5; color: #0f1926; font-weight: 800; display: flex; align-items: center; justify-content: center;">✓</div>
+                  <div style="width: 2px; height: 50px; background: #52cba5;"></div>
+                </div>
+                <div>
+                  <h4 style="margin: 0; font-size: 0.95rem; color: #0f1926;">1. Initial Complaint Filing &amp; Summons</h4>
+                  <p style="margin: 4px 0 0; font-size: 0.8rem; color: #64748b;">Completed 14 Jan 2026 • Verified court seal obtained from clerk.</p>
+                </div>
+              </div>
+
+              <!-- Step 2 (Completed) -->
+              <div style="display: flex; gap: 18px;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="width: 32px; height: 32px; border-radius: 50%; background: #52cba5; color: #0f1926; font-weight: 800; display: flex; align-items: center; justify-content: center;">✓</div>
+                  <div style="width: 2px; height: 50px; background: #52cba5;"></div>
+                </div>
+                <div>
+                  <h4 style="margin: 0; font-size: 0.95rem; color: #0f1926;">2. Preliminary Injunction &amp; Protective Order</h4>
+                  <p style="margin: 4px 0 0; font-size: 0.8rem; color: #64748b;">Completed 28 Jan 2026 • Commercial assets preserved under court escrow.</p>
+                </div>
+              </div>
+
+              <!-- Step 3 (Current Active) -->
+              <div style="display: flex; gap: 18px;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="width: 32px; height: 32px; border-radius: 50%; background: #3b82f6; color: #ffffff; font-weight: 800; display: flex; align-items: center; justify-content: center;">3</div>
+                  <div style="width: 2px; height: 50px; background: #e2e8f0;"></div>
+                </div>
+                <div>
+                  <h4 style="margin: 0; font-size: 0.95rem; color: #2563eb;">3. Discovery Phase &amp; Document Subpoenas (In Progress)</h4>
+                  <p style="margin: 4px 0 0; font-size: 0.8rem; color: #334155;">Active • Subpoenas served to opposing financial institutions. Deposition scheduled for tomorrow.</p>
+                </div>
+              </div>
+
+              <!-- Step 4 (Upcoming) -->
+              <div style="display: flex; gap: 18px;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0; color: #64748b; font-weight: 800; display: flex; align-items: center; justify-content: center;">4</div>
+                  <div style="width: 2px; height: 50px; background: #e2e8f0;"></div>
+                </div>
+                <div>
+                  <h4 style="margin: 0; font-size: 0.95rem; color: #64748b;">4. Summary Judgment Motion Filing</h4>
+                  <p style="margin: 4px 0 0; font-size: 0.8rem; color: #94a3b8;">Pending • Target filing date: 24 Oct 2026.</p>
+                </div>
+              </div>
+
+              <!-- Step 5 (Upcoming) -->
+              <div style="display: flex; gap: 18px;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0; color: #64748b; font-weight: 800; display: flex; align-items: center; justify-content: center;">5</div>
+                </div>
+                <div>
+                  <h4 style="margin: 0; font-size: 0.95rem; color: #64748b;">5. Trial Proceeding &amp; Final Arbitration Award</h4>
+                  <p style="margin: 4px 0 0; font-size: 0.8rem; color: #94a3b8;">Final Stage • Projected completion: Q1 2027.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 9: EVIDENCE VAULT -->
+        <section class="dash-tab-pane" id="tab-vault">
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Encrypted Evidence Vault (AES-256)</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Direct upload for confidential client evidence, contracts, and financial audits</p>
+              </div>
+            </div>
+
+            <!-- Drag and Drop Dropzone -->
+            <div id="vaultDropZone" style="border: 2px dashed #52cba5; border-radius: 12px; background: #f0fdf9; padding: 36px 20px; text-align: center; margin-bottom: 24px; cursor: pointer;">
+              <div style="font-size: 2.2rem; margin-bottom: 8px;">🔒 📤</div>
+              <h4 style="margin: 0 0 6px; font-size: 1.05rem; color: #0f1926;">Click to Select or Drag Files into Vault</h4>
+              <p style="margin: 0; font-size: 0.8rem; color: #64748b;">Supports PDF, DOCX, ZIP, XLSX, JPG (Up to 100 MB per file, client-side encrypted)</p>
+              <input type="file" id="vaultFileInput" style="display: none;" multiple>
+            </div>
+
+            <!-- Uploaded Evidence Files List -->
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Evidence ID</th>
+                    <th>File Name</th>
+                    <th>Classification</th>
+                    <th>Hash Checksum</th>
+                    <th>Encryption</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="vaultTableBody">
+                  <tr>
+                    <td><strong>#EV-881-01</strong></td>
+                    <td>Financial_Bank_Statement_Q3_2025.pdf</td>
+                    <td>Financial Records</td>
+                    <td><code>a8f9c1...9b2</code></td>
+                    <td><span class="dash-status-pill active">AES-256</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Verifying cryptographic checksum...')">Verify</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EV-881-02</strong></td>
+                    <td>Board_Meeting_Minutes_Executed.pdf</td>
+                    <td>Internal Corporate</td>
+                    <td><code>c47b20...5f1</code></td>
+                    <td><span class="dash-status-pill active">AES-256</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Verifying cryptographic checksum...')">Verify</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EV-881-03</strong></td>
+                    <td>Contractual_Correspondence_Export.zip</td>
+                    <td>Email Archives</td>
+                    <td><code>39d8e7...1a0</code></td>
+                    <td><span class="dash-status-pill active">AES-256</span></td>
+                    <td><button type="button" class="btn btn-outline-mint btn-sm" onclick="showToast('Verifying cryptographic checksum...')">Verify</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 10: ACCOUNT SETTINGS -->
+        <section class="dash-tab-pane" id="tab-settings">
+          <div class="dash-panel-card" style="max-width: 800px;">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">Client Profile &amp; Security Preferences</h3>
+                <p style="font-size: 0.8rem; color: #64748b; margin: 4px 0 0;">Manage your primary email, notification alerts, and security authentication</p>
+              </div>
+            </div>
+
+            <form id="clientSettingsForm">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div class="form-group">
+                  <label class="auth-field-label">Full Legal Name</label>
+                  <input type="text" id="setClientName" value="Saravanan" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+                </div>
+                <div class="form-group">
+                  <label class="auth-field-label">Primary Email Address</label>
+                  <input type="email" id="setClientEmail" value="client@stackly.com" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div class="form-group">
+                  <label class="auth-field-label">Primary Telephone</label>
+                  <input type="tel" value="+1 (555) 392-8819" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;">
+                </div>
+                <div class="form-group">
+                  <label class="auth-field-label">Timezone Preference</label>
+                  <select style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; background: #ffffff;">
+                    <option selected>Eastern Standard Time (US &amp; Canada)</option>
+                    <option>Central Standard Time</option>
+                    <option>Pacific Standard Time</option>
+                    <option>UTC / London (GMT)</option>
+                    <option>India Standard Time (IST)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="border-top: 1.5px solid #f1f5f9; padding-top: 20px; margin-bottom: 20px;">
+                <h4 style="margin: 0 0 12px; font-size: 0.95rem; color: #0f1926;">Matter Alerts &amp; Notifications</h4>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <label style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #334155; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px;">
+                    Email instant notification when counsel files a court document
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #334155; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px;">
+                    SMS reminder 24 hours prior to scheduled consultation meetings
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #334155; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px;">
+                    Monthly billing summary ledger delivered to primary inbox
+                  </label>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px;">
+                <button type="submit" class="btn btn-mint">Save Changes</button>
+                <button type="button" class="btn btn-outline-mint dash-logout-trigger">Sign Out</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- INTERACTIVE MODAL: BOOK CONSULTATION -->
+  <div class="modal-overlay" id="bookConsultModal">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="closeConsultModalBtn">&times;</button>
+      <div style="margin-bottom: 20px;">
+        <span class="dash-role-badge client">Quick Scheduling</span>
+        <h3 style="margin: 8px 0 4px; font-size: 1.35rem; color: #0f1926;">Book Legal Strategy Session</h3>
+        <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Schedule confidential advisory with your assigned partner</p>
+      </div>
+
+      <form id="consultBookingForm">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="auth-field-label">Select Counsel</label>
+          <select id="consultAttorneySelect" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; background: #ffffff;">
+            <option>Arthur Sterling, JD (Commercial Litigation)</option>
+            <option>Elena Vance (Private Equity &amp; Regulatory)</option>
+            <option>Sarah J. Montgomery (Federal Appeals)</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div class="form-group">
+            <label class="auth-field-label">Preferred Date</label>
+            <input type="date" id="consultDate" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+          </div>
+          <div class="form-group">
+            <label class="auth-field-label">Time Slot</label>
+            <select id="consultTime" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; background: #ffffff;">
+              <option>10:00 AM – 11:00 AM</option>
+              <option>02:00 PM – 03:00 PM</option>
+              <option>04:30 PM – 05:30 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 18px;">
+          <label class="auth-field-label">Session Topic / Matter Notes</label>
+          <textarea id="consultNotes" rows="3" placeholder="Briefly specify questions or discussion points..." style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px; resize: vertical; font-family: inherit; font-size: 0.85rem;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn btn-outline-mint" id="cancelConsultModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-mint">Confirm Consultation &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE MODAL: PAY INVOICE -->
+  <div class="modal-overlay" id="payInvoiceModal">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="closePayModalBtn">&times;</button>
+      <div style="margin-bottom: 20px;">
+        <span class="dash-role-badge client">Secure Legal Retainer</span>
+        <h3 style="margin: 8px 0 4px; font-size: 1.35rem; color: #0f1926;">Settle Invoice #INV-2026-492</h3>
+        <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Commercial Litigation Discovery Hours: <strong>$3,450.00</strong></p>
+      </div>
+
+      <form id="invoicePaymentForm">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="auth-field-label">Cardholder Name</label>
+          <input type="text" value="Saravanan" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="auth-field-label">Card Number</label>
+          <input type="text" placeholder="•••• •••• •••• 4092" value="4111 2222 3333 4092" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px;">
+          <div class="form-group">
+            <label class="auth-field-label">Expiry Date</label>
+            <input type="text" placeholder="MM/YY" value="08/29" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+          </div>
+          <div class="form-group">
+            <label class="auth-field-label">CVV / CVC</label>
+            <input type="password" placeholder="•••" value="882" style="width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-card); border-radius: 8px;" required>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn btn-outline-mint" id="cancelPayModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-mint">Pay $3,450.00 &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
