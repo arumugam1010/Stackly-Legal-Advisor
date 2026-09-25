@@ -2660,12 +2660,12 @@ button, input, select, textarea {
 }
 
 .services-hero-section {
-  background-image: url('../assets/images/hero-bg.webp') !important;
+  background-image: url('../assets/images/services-hero-bg.webp') !important;
   background-position: center right;
 }
 
 .team-hero-section {
-  background-image: url('../assets/images/hero-bg.webp') !important;
+  background-image: url('../assets/images/team-hero-bg.webp') !important;
   background-position: center right;
 }
 
@@ -2677,7 +2677,8 @@ button, input, select, textarea {
   color: #ffffff;
 }
 
-.breadcrumb {
+.breadcrumb,
+.hero-breadcrumb {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2686,15 +2687,19 @@ button, input, select, textarea {
   margin-top: 24px;
 }
 
-.breadcrumb a {
+.breadcrumb a,
+.hero-breadcrumb a {
   color: #cbd5e1;
 }
 
-.breadcrumb a:hover {
+.breadcrumb a:hover,
+.hero-breadcrumb a:hover {
   color: var(--primary-mint);
 }
 
-.breadcrumb span {
+.breadcrumb span,
+.hero-breadcrumb span,
+.hero-breadcrumb .breadcrumb-current {
   color: var(--primary-mint);
   font-weight: 600;
 }
@@ -3461,7 +3466,7 @@ button, input, select, textarea {
 
 .blog-hero-section {
   background-image: url('../assets/images/blog-hero-bg.webp') !important;
-  background-position: center center;
+  background-position: center right;
 }
 
 
