@@ -6,20 +6,20 @@
   <title>Sign In</title>
   <meta name="description" content="Sign in to continue to your AutoDrive account.">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/webp" href="assets/images/logo-stackly-mint.webp">
+  <link rel="icon" type="image/png" href="assets/images/logo-stackly.png">
 </head>
 <body class="auth-page-body">
 
   <div class="auth-layout">
     <!-- Left Column: Lady Justice with Gavel Image -->
     <div class="auth-media-side">
-      <img src="assets/images/auth-statue.webp" alt="Lady Justice statue with wooden judge gavel" width="654" height="1522">
+      <img src="assets/images/auth-legal-bg.webp" alt="Lady Justice statue with wooden judge gavel and law library" width="848" height="1264">
     </div>
 
     <!-- Right Column: Sign In Form -->
     <div class="auth-form-side">
       <a href="index.html" class="auth-back-home" title="Back to Home">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
         <span>Back to Home</span>
@@ -27,15 +27,13 @@
 
       <div class="auth-form-box">
         <div class="auth-header">
-          <a href="index.html" title="Stackly Home" style="display: inline-block;">
-            <img src="assets/images/logo-stackly-mint.webp" alt="Stackly" class="auth-brand-logo">
-          </a>
           <h1>Sign In</h1>
-          <p>Sign in to continue to your Stackly account.</p>
+          <p>Sign in to continue to your AutoDrive account.</p>
         </div>
 
-        <!-- Role Selector -->
         <div class="role-select-title">Select Your Role</div>
+
+        <!-- Role Selector -->
         <div class="role-toggle-grid">
           <button type="button" class="role-card-btn active" data-role="client">
             <div class="role-icon-box">
@@ -51,9 +49,11 @@
 
           <button type="button" class="role-card-btn" data-role="advocate">
             <div class="role-icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                <line x1="12" y1="12" x2="12" y2="16"></line>
+                <line x1="10" y1="14" x2="14" y2="14"></line>
               </svg>
             </div>
             <div class="role-text-info">
@@ -65,11 +65,11 @@
 
         <!-- Sign In Form -->
         <form id="signInPageForm">
-          <div class="form-group">
+          <div class="form-group email-form-group">
             <label for="siEmail" class="auth-field-label">Email Address</label>
             <div class="input-with-icon-wrap">
               <span class="input-prefix-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
@@ -79,11 +79,10 @@
             <div id="siEmailError" class="auth-error-msg" style="display:none; color: #ef4444; font-size: 0.8rem; margin-top: 6px;"></div>
           </div>
 
-          <div class="form-group">
-            <label for="siPass" class="auth-field-label">Password</label>
+          <div class="form-group password-form-group">
             <div class="input-with-icon-wrap">
               <span class="input-prefix-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
@@ -104,6 +103,7 @@
 
           <button type="submit" class="auth-submit-btn">Sign In &rarr;</button>
 
+          <!-- Divider with teal lines -->
           <div class="auth-divider-line">
             <span class="divider-text">Or</span>
           </div>

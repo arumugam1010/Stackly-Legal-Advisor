@@ -11,14 +11,183 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 2. Mobile Menu Toggle
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('mobile-open');
+  // 2. Mobile Drawer Navigation (Image 2 Model - Dark Navy Theme)
+  function initMobileDrawer() {
+    let drawer = document.getElementById('mobileDrawer');
+    let overlay = document.getElementById('mobileDrawerOverlay');
+
+    if (!drawer) {
+      overlay = document.createElement('div');
+      overlay.id = 'mobileDrawerOverlay';
+      overlay.className = 'mobile-drawer-overlay';
+      document.body.appendChild(overlay);
+
+      drawer = document.createElement('aside');
+      drawer.id = 'mobileDrawer';
+      drawer.className = 'mobile-drawer';
+
+      // Detect active page
+      const curPath = (window.location.pathname || '').toLowerCase();
+      const isHome = curPath.endsWith('index.html') || curPath.endsWith('/') || curPath === '' || (!curPath.includes('about') && !curPath.includes('services') && !curPath.includes('blog') && !curPath.includes('team') && !curPath.includes('contact'));
+      const isAbout = curPath.includes('about');
+      const isServices = curPath.includes('services');
+      const isBlog = curPath.includes('blog');
+      const isTeam = curPath.includes('team');
+      const isContact = curPath.includes('contact');
+
+      // Check auth state for drawer action buttons
+      let auth = null;
+      try {
+        auth = JSON.parse(localStorage.getItem('stackly_auth'));
+      } catch (err) {}
+      const isLoggedIn = auth && auth.isLoggedIn && auth.userSignedIn;
+      const isAdvocate = auth && auth.role === 'advocate';
+      const dashUrl = isAdvocate ? 'dashboard-advocate.html' : 'dashboard-client.html';
+
+      drawer.innerHTML = `
+        <div class="drawer-header">
+          <a href="index.html" class="drawer-brand" aria-label="Stackly Home">
+            <img src="assets/images/logo-stackly.png" alt="Stackly" class="drawer-brand-img">
+          </a>
+          <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="drawer-nav">
+          <a href="index.html" class="drawer-link ${isHome ? 'active' : ''}">
+            <span>Home</span>
+            ${isHome ? '<span class="drawer-active-badge">ACTIVE</span>' : ''}
+          </a>
+          <a href="about.html" class="drawer-link ${isAbout ? 'active' : ''}">
+            <span>About</span>
+            ${isAbout ? '<span class="drawer-active-badge">ACTIVE</span>' : ''}
+          </a>
+          <a href="services.html" class="drawer-link ${isServices ? 'active' : ''}">
+            <span>Services</span>
+            ${isServices ? '<span class="drawer-active-badge">ACTIVE</span>' : ''}
+          </a>
+          <a href="team.html" class="drawer-link ${isTeam ? 'active' : ''}">
+            <span>Shop</span>
+            ${isTeam ? '<span class="drawer-active-badge">ACTIVE</span>' : ''}
+          </a>
+          <a href="blog.html" class="drawer-link ${isBlog ? 'active' : ''}">
+            <span>Blog</span>
+            ${isBlog ? '<span class="drawer-active-badge">ACTIVE</span>' : ''}
+          </a>
+          <a href="contact.html" class="drawer-link ${isContact ? 'active' : ''}">
+            <span>Contact</span>
+            ${isContact ? '<span class="drawer-active-badge">ACTIVE</span>' : ''}
+          </a>
+        </nav>
+
+        <div class="drawer-actions">
+          ${isLoggedIn ? `
+            <a href="${dashUrl}" class="drawer-btn drawer-btn-register">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Dashboard</span>
+            </a>
+          ` : `
+            <a href="signin.html" class="drawer-btn drawer-btn-login">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                <polyline points="10 17 15 12 10 7"></polyline>
+                <line x1="15" y1="12" x2="3" y2="12"></line>
+              </svg>
+              <span>Login</span>
+            </a>
+            <a href="signup.html" class="drawer-btn drawer-btn-register">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+              <span>Register</span>
+            </a>
+          `}
+        </div>
+
+        <div class="drawer-footer-contact">
+          <div class="drawer-contact-item">
+            <div class="drawer-contact-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <a href="mailto:needhelp@stackly.com" class="drawer-contact-text">needhelp@stackly.com</a>
+          </div>
+          <div class="drawer-contact-item">
+            <div class="drawer-contact-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+            </div>
+            <a href="tel:6668880000" class="drawer-contact-text">666 888 0000</a>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(drawer);
+    }
+
+    // Bind Drawer Open/Close events
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const closeBtn = document.getElementById('drawerCloseBtn');
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (mobileToggle) {
+      // Remove old listeners by cloning
+      const freshToggle = mobileToggle.cloneNode(true);
+      mobileToggle.parentNode.replaceChild(freshToggle, mobileToggle);
+
+      freshToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openDrawer();
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeDrawer();
+      });
+    }
+
+    if (overlay) {
+      overlay.addEventListener('click', closeDrawer);
+    }
+
+    drawer.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
     });
   }
+
+  initMobileDrawer();
 
   // 2.5 Auth State Synchronization for Navbar
   function syncAuthNavbar() {
@@ -55,17 +224,18 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
       `;
     } else {
-      // Show Login button when NOT logged in
+      // Show Login button when NOT logged in (ONLY ONE SET in nav-actions)
       navActions.innerHTML = `
         <a href="contact.html" class="btn btn-outline-mint btn-sm">Free Consultation</a>
         <a href="signin.html" class="btn btn-mint btn-sm">Login</a>
       `;
     }
 
-    // Ensure no duplicate Dashboard link inside navMenu
-    const existingDashLink = navMenu ? navMenu.querySelector('.mobile-dash-link') : null;
-    if (existingDashLink) {
-      existingDashLink.remove();
+    // Clean up any rogue mobile actions inside navMenu so desktop navbar never duplicates buttons
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+      const legacyMobileActions = navMenu.querySelectorAll('.mobile-nav-actions, .mobile-dash-link');
+      legacyMobileActions.forEach(el => el.remove());
     }
   }
 
@@ -883,16 +1053,26 @@ document.addEventListener('DOMContentLoaded', () => {
     dashMobileToggle.addEventListener('click', () => {
       dashSidebar.classList.add('drawer-open');
       if (dashSidebarOverlay) dashSidebarOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
+
+    if (window.location.search.includes('drawer=open')) {
+      dashSidebar.classList.add('drawer-open');
+      if (dashSidebarOverlay) dashSidebarOverlay.classList.add('active');
+    }
   }
 
   function closeDashSidebar() {
     if (dashSidebar) dashSidebar.classList.remove('drawer-open');
     if (dashSidebarOverlay) dashSidebarOverlay.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
   if (dashSidebarClose) dashSidebarClose.addEventListener('click', closeDashSidebar);
   if (dashSidebarOverlay) dashSidebarOverlay.addEventListener('click', closeDashSidebar);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDashSidebar();
+  });
 
   // Forward wheel events on sidebar to main window (Sidebar never scrolls, only page scrolls)
   if (dashSidebar) {
@@ -1188,6 +1368,11 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       auth = JSON.parse(localStorage.getItem('stackly_auth'));
     } catch (err) {}
+    if ((!auth || !auth.isLoggedIn || !auth.userSignedIn) && window.location.search.includes('demo=1')) {
+      const isAdv = window.location.pathname.includes('advocate');
+      auth = { isLoggedIn: true, userSignedIn: true, name: isAdv ? 'Arthur Sterling, JD' : 'Saravanan', email: isAdv ? 'advocate@stackly.com' : 'client@stackly.com', role: isAdv ? 'advocate' : 'client' };
+      localStorage.setItem('stackly_auth', JSON.stringify(auth));
+    }
     if (!auth || !auth.isLoggedIn || !auth.userSignedIn) {
       localStorage.removeItem('stackly_auth');
       window.location.href = 'signin.html';
@@ -1213,7 +1398,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 1. Allow Header / Navbar (Brand logo, Menu links, Action buttons, Mobile hamburger toggle)
+    // 1. Allow Header / Navbar (Brand logo, Menu links, Action buttons, Mobile hamburger toggle) & Mobile Drawer
     if (
       e.target.closest('header') ||
       e.target.closest('.site-header') ||
@@ -1222,8 +1407,20 @@ document.addEventListener('DOMContentLoaded', () => {
       e.target.closest('.nav-actions') ||
       e.target.closest('.nav-menu') ||
       e.target.closest('.mobile-menu-btn') ||
-      e.target.closest('.nav-toggle')
+      e.target.closest('.nav-toggle') ||
+      e.target.closest('.mobile-toggle') ||
+      e.target.closest('.mobile-drawer') ||
+      e.target.closest('.mobile-drawer-overlay') ||
+      e.target.closest('.drawer-close-btn') ||
+      e.target.closest('#drawerCloseBtn')
     ) {
+      return;
+    }
+
+    // Footer social icons route to 404 page ("footer irrukura icon click pana 404 page ku ponum")
+    if (e.target.closest('.social-circle-btn') || e.target.closest('.footer-social-circle-row a')) {
+      e.preventDefault();
+      window.location.href = '404.html';
       return;
     }
 
@@ -1258,8 +1455,17 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (actionTarget) {
-      // Do not block sidebar close button
-      if (actionTarget.classList.contains('dash-sidebar-close')) return;
+      // Do not block sidebar close button, mobile drawer, or close button
+      if (
+        actionTarget.classList.contains('dash-sidebar-close') ||
+        actionTarget.classList.contains('drawer-close-btn') ||
+        actionTarget.id === 'drawerCloseBtn' ||
+        actionTarget.closest('.mobile-drawer') ||
+        actionTarget.closest('.mobile-drawer-overlay') ||
+        actionTarget.closest('.mobile-toggle')
+      ) {
+        return;
+      }
 
       e.preventDefault();
       e.stopPropagation();
@@ -1299,4 +1505,44 @@ window.togglePassVisibility = function(inputId) {
          </svg>`;
   }
 };
+
+// Auth Pages: Role Selector Click Handling
+document.addEventListener('DOMContentLoaded', function() {
+  const roleButtons = document.querySelectorAll('.role-card-btn');
+  if (roleButtons.length > 0) {
+    roleButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        roleButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  }
+
+  // Password criteria updater for Sign Up page
+  const suPass = document.getElementById('suPass');
+  if (suPass) {
+    const critLength = document.getElementById('critLength');
+    const critNumber = document.getElementById('critNumber');
+    const critSpecial = document.getElementById('critSpecial');
+
+    suPass.addEventListener('input', function() {
+      const val = this.value;
+      const hasLength = val.length >= 8;
+      const hasNumber = /\d/.test(val);
+      const hasSpecial = /[^A-Za-z0-9]/.test(val);
+
+      if (critLength) {
+        critLength.style.opacity = hasLength ? '1' : '0.5';
+      }
+      if (critNumber) {
+        critNumber.style.opacity = hasNumber ? '1' : '0.5';
+      }
+      if (critSpecial) {
+        critSpecial.style.opacity = hasSpecial ? '1' : '0.5';
+      }
+    });
+  }
+});
+
 
